@@ -1,9 +1,6 @@
-import { readFileSync } from "node:fs";
-import { resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const dataDir = resolve(__dirname, "../../data");
+import catalogData from "../../data/catalog.json" with { type: "json" };
+import colorData from "../../data/color.json" with { type: "json" };
+import materialData from "../../data/material.json" with { type: "json" };
 
 interface CatalogEntry {
   id: string;
@@ -17,15 +14,9 @@ interface IdTitle {
   title: string;
 }
 
-const catalog: CatalogEntry[] = JSON.parse(
-  readFileSync(resolve(dataDir, "catalog.json"), "utf-8"),
-);
-const colors: IdTitle[] = JSON.parse(
-  readFileSync(resolve(dataDir, "color.json"), "utf-8"),
-);
-const materials: IdTitle[] = JSON.parse(
-  readFileSync(resolve(dataDir, "material.json"), "utf-8"),
-);
+const catalog = catalogData as CatalogEntry[];
+const colors = colorData as IdTitle[];
+const materials = materialData as IdTitle[];
 
 function buildCatalogDesc(entries: CatalogEntry[], gender: string): string {
   return entries

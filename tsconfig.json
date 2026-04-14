@@ -3,11 +3,12 @@
 
   "compilerOptions": {
     "outDir": "dist",
+    "resolveJsonModule": true,
     "types": ["node", "vite/client"],
     "paths": {
       "@/*": ["./web/src/*"]
     }
   },
 
-  "include": ["server/src", "web/src"]
+  "include": ["server/src", "web/src", "data"]
 }
