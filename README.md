@@ -1,6 +1,6 @@
 # Recove MCP App
 
-A ChatGPT app that searches for second-hand clothing and accessories on Vinted through natural conversation. Describe what you want — a single item or a full outfit — and get visual results instantly.
+A ChatGPT app to search for second-hand clothing and accessories on Vinted through natural conversation. Describe what you want — a single item or a full outfit — and get visual results instantly.
 
 Built with [Skybridge](https://docs.skybridge.tech/home).
 
