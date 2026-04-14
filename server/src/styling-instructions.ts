@@ -31,4 +31,4 @@ Workflow:
 3. Determine type, style, color, material, brands, size, price. Match aesthetics to the Style Cheat Sheet.
 4. Generate keywords (max 4 words, French or English — French preferred for better results). Use strong fashion terms.
 5. Build one tool call with an array of queries.
-Query Params: keywords (max 4 words, French or English), catalog_ids, color_ids (opt), material_ids (opt), price_to (opt), limit (ALWAYS 20).`;
+Query Params: keywords (max 4 words, French or English), catalog_ids, color_ids (opt), material_ids (opt), price_to (opt).`;

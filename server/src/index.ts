@@ -28,10 +28,6 @@ const querySchema = z.object({
     .number()
     .optional()
     .describe("Maximum price in EUR."),
-  limit: z
-    .number()
-    .optional()
-    .describe("Max items to return per query. Defaults to 96."),
 });
 
 const server = new McpServer(
@@ -92,7 +88,6 @@ const app = server.registerWidget(
         color_ids: q.color_ids,
         material_ids: q.material_ids,
         price_to: q.price_to,
-        limit: q.limit,
       }));
 
       const apiResults = await apiClient.search(apiQueries);

@@ -8,7 +8,6 @@ export interface SearchQuery {
   color_ids?: number[];
   material_ids?: number[];
   price_to?: number;
-  limit?: number;
 }
 
 export interface SearchResultItem {
