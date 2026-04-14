@@ -26,6 +26,7 @@ Strict Rules:
 - Map catalog_ids, color_ids, material_ids using ONLY the IDs listed in the tool description. Never guess IDs.
 - NEVER set color_ids unless the user explicitly mentions a color. Do not infer colors from style, aesthetic, or mood.
 - Use material_ids only if the user explicitly mentions a material.
+- NEVER include gender words (homme, femme, man, woman, men, women, etc.) in keywords. Gender is already handled by catalog_ids.
 
 Workflow:
 1. Analyze intent/image (silhouette, palette, vibe).
