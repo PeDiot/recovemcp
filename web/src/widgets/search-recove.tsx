@@ -8,17 +8,22 @@ import { ItemsGrid } from "../components/ItemsGrid.js";
 interface ApiItem {
   id: string;
   url: string;
-  image_url: string;
+  image_location: string;
   title: string;
-  brand: string;
-  price: number;
-  currency: string;
+  brand?: string;
+  price?: number;
+  currency?: string;
   size?: string;
   condition?: string;
+  is_newest?: boolean;
+  is_trending_brand?: boolean;
+  is_fast_fashion?: boolean;
+  category_type: string;
+  origin_id: string;
 }
 
 interface MetaResult {
-  description: string;
+  description: { text: string; category_type: string };
   items: ApiItem[];
 }
 
@@ -26,13 +31,18 @@ function mapApiItemToItem(apiItem: ApiItem): Item {
   return {
     id: apiItem.id,
     url: apiItem.url,
-    image_location: apiItem.image_url,
+    image_location: apiItem.image_location,
     title: apiItem.title,
     brand: apiItem.brand,
     price: apiItem.price,
     currency: apiItem.currency,
     size: apiItem.size,
     condition: apiItem.condition,
+    is_newest: apiItem.is_newest,
+    is_trending_brand: apiItem.is_trending_brand,
+    is_fast_fashion: apiItem.is_fast_fashion,
+    category_type: apiItem.category_type,
+    origin_id: apiItem.origin_id,
   };
 }
 
@@ -69,7 +79,7 @@ function SearchRecove() {
   const metaResults = meta?.results ?? [];
 
   const queryResponses: QueryResponse[] = metaResults.map((result) => ({
-    description: { text: result.description },
+    description: result.description,
     items: result.items.map(mapApiItemToItem),
   }));
 

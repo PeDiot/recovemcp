@@ -10,5 +10,5 @@
     }
   },
 
-  "include": ["server/src", "web/src", "data"]
+  "include": ["server/src", "web/src"]
 }

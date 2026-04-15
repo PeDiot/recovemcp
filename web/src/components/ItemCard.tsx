@@ -76,9 +76,11 @@ export function ItemCard({ item, onClickOut, onItemPress }: ItemCardProps) {
           )}
 
           <div className="flex justify-between items-center mt-1.5">
+            {item.price != null && item.currency && (
             <span className="text-sm font-bold text-gray-900 dark:text-white">
               {formatPriceWithCurrency(item.price, item.currency)}
             </span>
+            )}
             {item.size && (
               <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-white/[0.08] px-2 py-0.5 rounded-md">
                 {item.size}
