@@ -42,7 +42,7 @@ This starts:
 │   └── env.ts                  # .env loader for local dev
 ├── web/src/
 │   ├── widgets/search-recove.tsx  # Main widget
-│   ├── components/                # ItemCard, ItemsScrollableGrid
+│   ├── components/                # ItemCard, ItemsGrid
 │   ├── models.ts                  # TypeScript interfaces
 │   └── utils.ts                   # Price formatting, browser detection
 ├── data/                       # Vinted catalog, color & material mappings (JSON)

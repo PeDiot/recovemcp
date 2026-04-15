@@ -8,10 +8,11 @@ interface ItemCardProps {
 }
 
 export function ItemCard({ item, onClickOut, onItemPress }: ItemCardProps) {
-  const handleItemPress = () => {
+  const handleItemPress = (e: React.MouseEvent) => {
     if (!item.url) return;
 
     if (onItemPress?.(item)) {
+      e.preventDefault();
       return;
     }
 
@@ -30,8 +31,11 @@ export function ItemCard({ item, onClickOut, onItemPress }: ItemCardProps) {
 
   return (
     <div className="w-full mb-4">
-      <button
-        className="w-full bg-white dark:bg-white/[0.08] rounded-2xl overflow-hidden hover:shadow-md dark:hover:bg-white/[0.12] transition-all duration-200 text-left"
+      <a
+        href={item.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block w-full bg-white dark:bg-white/[0.08] rounded-2xl overflow-hidden hover:shadow-md active:shadow-md dark:hover:bg-white/[0.12] dark:active:bg-white/[0.12] transition-all duration-200 text-left no-underline"
         onClick={handleItemPress}
       >
         <div className="w-full aspect-[3/4] bg-gray-100 dark:bg-white/[0.05] rounded-2xl overflow-hidden relative">
@@ -41,11 +45,6 @@ export function ItemCard({ item, onClickOut, onItemPress }: ItemCardProps) {
             className="w-full h-full object-cover rounded-2xl"
             loading="lazy"
           />
-          {item.size && (
-            <div className="absolute top-2 left-2 bg-white/90 dark:bg-black/60 px-2 py-1 rounded-md backdrop-blur-sm">
-              <span className="text-xs text-gray-900 dark:text-gray-100">{item.size}</span>
-            </div>
-          )}
           {item.is_newest && (
             <div className="absolute bottom-2 right-2 bg-white/90 dark:bg-black/60 px-2 py-1 rounded-md backdrop-blur-sm">
               <span className="text-xs text-gray-900 dark:text-gray-100">New</span>
@@ -80,9 +79,14 @@ export function ItemCard({ item, onClickOut, onItemPress }: ItemCardProps) {
             <span className="text-sm font-bold text-gray-900 dark:text-white">
               {formatPriceWithCurrency(item.price, item.currency)}
             </span>
+            {item.size && (
+              <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-white/[0.08] px-2 py-0.5 rounded-md">
+                {item.size}
+              </span>
+            )}
           </div>
         </div>
-      </button>
+      </a>
     </div>
   );
 }

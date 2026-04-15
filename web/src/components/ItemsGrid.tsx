@@ -1,19 +1,19 @@
 import type { QueryResponse, Item } from "../models.js";
 import { ItemCard } from "./ItemCard.js";
 
-interface ItemsScrollableGridProps {
+interface ItemsGridProps {
   queryResponse: QueryResponse;
   onClickOut?: (item: Item) => void;
   onItemPress?: (item: Item) => boolean;
 }
 
-export function ItemsScrollableGrid({
+export function ItemsGrid({
   queryResponse,
   onClickOut,
   onItemPress,
-}: ItemsScrollableGridProps) {
+}: ItemsGridProps) {
   return (
-    <div className="w-full">
+    <div className="w-full border border-gray-200/80 dark:border-white/10 rounded-2xl p-3">
       <div className="mb-4 px-1">
         <h2 className="text-lg font-medium text-[#3B1228] dark:text-gray-100 leading-tight line-clamp-2">
           {queryResponse.description.text}
@@ -26,7 +26,7 @@ export function ItemsScrollableGrid({
         </div>
       </div>
 
-      <div className="overflow-x-auto scrollbar-hide -mx-4 px-4">
+      <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 py-1">
         <div className="flex gap-4" style={{ width: "max-content" }}>
           {queryResponse.items.map((item) => (
             <div key={item.id} className="w-48 flex-shrink-0">
@@ -43,4 +43,4 @@ export function ItemsScrollableGrid({
   );
 }
 
-export default ItemsScrollableGrid;
+export default ItemsGrid;

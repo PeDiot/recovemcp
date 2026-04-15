@@ -3,7 +3,7 @@ import "@/index.css";
 import { mountWidget, useOpenExternal, useLayout } from "skybridge/web";
 import { useToolInfo } from "../helpers.js";
 import type { Item, QueryResponse } from "../models.js";
-import { ItemsScrollableGrid } from "../components/ItemsScrollableGrid.js";
+import { ItemsGrid } from "../components/ItemsGrid.js";
 
 interface ApiItem {
   id: string;
@@ -87,7 +87,7 @@ function SearchRecove() {
     <div className={isDark ? "dark" : ""}>
       <div className="p-4 space-y-8">
         {queryResponses.map((qr, idx) => (
-          <ItemsScrollableGrid
+          <ItemsGrid
             key={idx}
             queryResponse={qr}
             onClickOut={handleClickOut}
