@@ -2,25 +2,54 @@ import { publicEncrypt, constants } from "node:crypto";
 
 const BASE_URL = "https://api2.shoprecove.com";
 
-export interface SearchQuery {
-  keywords: string;
-  catalog_ids?: number[];
-  color_ids?: number[];
-  material_ids?: number[];
-  price_to?: number;
+export interface SearchFilters {
+  women?: boolean;
+  price_min?: number;
+  price_max?: number;
+  size_list?: string[];
+  is_fast_fashion?: boolean;
 }
 
 export interface SearchResultItem {
-  id: number;
-  url: string;
-  image_url: string;
-  image_base64?: string | null;
+  id: string;
   title: string;
-  brand: string;
-  price: number;
-  currency: string;
+  url: string;
+  image_location: string;
+  women: boolean;
+  category_type: string;
+  catalog_id?: number | null;
+  brand?: string | null;
+  price?: number | null;
+  currency?: string | null;
   size?: string | null;
   condition?: string | null;
+  color_id?: number | null;
+  point_id?: string | null;
+  score?: number | null;
+  index_name?: string;
+  unix_created_at?: number | null;
+  is_newest?: boolean | null;
+  is_fast_fashion?: boolean | null;
+  is_trending_brand?: boolean | null;
+  relevance?: number | null;
+  item_description_id?: string | null;
+  origin_id: string;
+}
+
+export interface ItemDescription {
+  text: string;
+  category_type: string;
+  rank: number;
+  score: string;
+}
+
+export interface SearchEntry {
+  description: ItemDescription;
+  items: SearchResultItem[];
+}
+
+export interface SearchResponse {
+  entries: SearchEntry[];
 }
 
 function encryptSecretKey(publicKeyPem: string, secretKey: string): string {
@@ -63,39 +92,44 @@ export class ApiClient {
     return this.cachedPublicKey;
   }
 
-  private async getHeaders(
-    contentType?: string,
-  ): Promise<Record<string, string>> {
+  private async getHeaders(): Promise<Record<string, string>> {
     const publicKey = await this.fetchPublicKey();
     const ciphertext = encryptSecretKey(publicKey, this.getSecretKey());
 
-    const headers: Record<string, string> = {
+    return {
       Accept: "application/json",
       "X-API-SECRET": ciphertext,
     };
-
-    if (contentType) {
-      headers["Content-Type"] = contentType;
-    }
-
-    return headers;
   }
 
-  async search(queries: SearchQuery[]): Promise<SearchResultItem[][]> {
-    const headers = await this.getHeaders("application/json");
+  async search(
+    textList: string[],
+    categoryTypeList: string[],
+    filters?: SearchFilters,
+    userId?: string,
+  ): Promise<SearchResponse> {
+    const params = new URLSearchParams();
+    params.set("text_list", JSON.stringify(textList));
+    params.set("category_type_list", JSON.stringify(categoryTypeList));
 
-    const response = await fetch(`${BASE_URL}/vinted/search`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({ queries }),
-    });
+    if (filters) {
+      params.set("filters", JSON.stringify(filters));
+    }
+    if (userId) {
+      params.set("user_id", userId);
+    }
+
+    const url = `${BASE_URL}/search/texts?${params.toString()}`;
+    const headers = await this.getHeaders();
+
+    const response = await fetch(url, { method: "GET", headers });
 
     if (!response.ok) {
       const errorText = await response.text();
       throw new Error(`API error ${response.status}: ${errorText}`);
     }
 
-    return response.json() as Promise<SearchResultItem[][]>;
+    return response.json() as Promise<SearchResponse>;
   }
 }
 
