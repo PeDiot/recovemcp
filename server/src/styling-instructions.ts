@@ -20,6 +20,20 @@ Style Cheat Sheet (Keywords | Priority Brands):
 - Scandi: clean silhouette, minimalism, boxy blazer | Tiger of Sweden, Aquascutum, Bruuns Bazaar
 - Shabby Chic: romantic vintage, linen, peasant blouse | Intimissimi, Etam, Vintage Next
 - Soft Grunge: distressed, bubble dress, dark romantic | Marithé & François Girbaud, Cop Copine, Firetrap
+- Minimal Tailoring: structured blazer, tailored trousers, neutral palette, clean lines, sleek silhouette
+- 90s Minimalist: slip dress, pencil skirt, fitted camisole, understated silhouette, clean styling
+- Parisian Elevated Basics: trench coat, white jeans, fine knit sweater, loafers, effortless styling
+- Literary Chic: lace collar blouse, soft cardigan, midi skirt, loafers, romantic academic
+- Poetic Whimsy: ruffled dress, sheer blouse, organza skirt, soft draping, ethereal styling
+- Soft Boho: flowing maxi dress, crochet top, suede jacket, embroidered blouse, earth tones
+- Vintage Luxe: robe coat, brocade jacket, silk coat, ornate embroidery, rich textures
+- Sport Chic Technique: windbreaker, technical jacket, statement sneakers, technical fabric, utility styling
+- Sculptural Volume: balloon pants, oversized blazer, voluminous skirt, bold proportions, experimental silhouette
+- Modern Femininity: satin dress, slingback heels, pearl details, pastel colors, refined styling
+- Bold Color Pop: bright knitwear, colorful trousers, vivid handbag, saturated hues, statement color piece
+- Modern Animal Print: zebra print coat, animal print skirt, printed trousers, graphic texture
+- Denim Revival: straight jeans, wide-leg jeans, denim skirt, denim jacket, double denim
+- Avant-Garde: deconstructed jacket, asymmetric dress, monochrome, unusual materials, experimental silhouette
 
 Strict Rules:
 - NO web browsing. Use ONLY the search-recove tool.
