@@ -28,19 +28,24 @@ const filtersSchema = z.object({
   women: z
     .boolean()
     .optional()
-    .describe("True for women's items, false for men's."),
+    .describe("Set only if the user specifies gender. true for women's, false for men's. Omit if unspecified."),
   price_min: z.number().optional().describe("Minimum price filter."),
   price_max: z.number().optional().describe("Maximum price filter."),
-  size_list: z
-    .array(z.string())
+  size: z
+    .array(
+      z.object({
+        key: categoryTypeEnum.describe("Category type."),
+        values: z.array(z.string()).describe("List of size strings."),
+      }),
+    )
     .optional()
     .describe(
-      "List of sizes to filter by. Consult the size-mapping resource for valid values per category.",
+      "Sizes to filter by, per category type. Consult the size-mapping resource for valid values.",
     ),
-  is_fast_fashion: z
+  remove_fast_fashion: z
     .boolean()
     .optional()
-    .describe("Whether to include fast fashion items."),
+    .describe("Set to true to exclude fast fashion brands."),
 });
 
 const server = new McpServer(
@@ -71,7 +76,7 @@ server.registerResource(
   "resource:///size-mapping",
   {
     description:
-      "Available sizes by category type for the size_list filter parameter",
+      "Available sizes by category type for the size filter parameter",
     mimeType: "text/plain",
   },
   () => ({
@@ -126,8 +131,8 @@ const app = server.registerWidget(
             women: filters.women,
             price_min: filters.price_min,
             price_max: filters.price_max,
-            size_list: filters.size_list,
-            is_fast_fashion: filters.is_fast_fashion,
+            size: filters.size,
+            remove_fast_fashion: filters.remove_fast_fashion,
           }
         : undefined;
 
