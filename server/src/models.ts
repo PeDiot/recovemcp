@@ -6,11 +6,8 @@ export type CategoryType =
   | "accessories"
   | "dress";
 
-export interface SizeCategory {
-  key: CategoryType;
-  label?: string;
-  values: string[];
-}
+import type { SizeCategory } from "./size-mapping.js";
+export type { SizeCategory } from "./size-mapping.js";
 
 export interface SearchFilters {
   women?: boolean;

@@ -13,17 +13,3 @@ export function formatPriceWithCurrency(
     return `${price} ${currency}`;
   }
 }
-
-export function isInAppBrowser(): boolean {
-  if (typeof navigator === "undefined") return false;
-  const ua = navigator.userAgent.toLowerCase();
-  return (
-    ua.includes("chatgpt") ||
-    ua.includes("fban") ||
-    ua.includes("fbav") ||
-    ua.includes("instagram") ||
-    ua.includes("line/") ||
-    ua.includes("wechat") ||
-    ua.includes("twitter")
-  );
-}

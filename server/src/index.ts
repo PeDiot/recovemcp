@@ -4,7 +4,7 @@ import { z } from "zod";
 import { apiClient } from "./api-client.js";
 import { toolDescription } from "./tool-description.js";
 import { stylingInstructions } from "./styling-instructions.js";
-import { sizeMappingText } from "./size-mapping.js";
+import { sizeMappingText, sizeCategorySchema } from "./size-mapping.js";
 
 const categoryTypeEnum = z.enum([
   "outerwear",
@@ -32,15 +32,10 @@ const filtersSchema = z.object({
   price_min: z.number().optional().describe("Minimum price filter."),
   price_max: z.number().optional().describe("Maximum price filter."),
   size: z
-    .array(
-      z.object({
-        key: categoryTypeEnum.describe("Category type."),
-        values: z.array(z.string()).describe("List of size strings."),
-      }),
-    )
+    .array(sizeCategorySchema)
     .optional()
     .describe(
-      "Sizes to filter by, per category type. Consult the size-mapping resource for valid values.",
+      "Sizes to filter by, per category type. Each entry must use valid sizes for its category.",
     ),
   remove_fast_fashion: z
     .boolean()
