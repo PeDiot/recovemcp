@@ -1,7 +1,9 @@
 import { publicEncrypt, constants } from "node:crypto";
 import type { SearchFilters, SearchResponse } from "./models.js";
 
-const BASE_URL = "https://jamee-presymptomatic-noma.ngrok-free.dev";
+const DEV_API_URL = "https://jamee-presymptomatic-noma.ngrok-free.dev";
+const PROD_API_URL = "https://api2.shoprecove.com";
+const BASE_URL = process.env.IS_DEV_API === "true" ? DEV_API_URL : PROD_API_URL;
 
 function encryptSecretKey(publicKeyPem: string, secretKey: string): string {
   const encrypted = publicEncrypt(
