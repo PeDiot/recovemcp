@@ -1,8 +1,4 @@
-interface SizeCategory {
-  key: string;
-  label: string;
-  values: string[];
-}
+import type { SizeCategory } from "./models.js";
 
 const sizeCategories: SizeCategory[] = [
   {
@@ -11,11 +7,7 @@ const sizeCategories: SizeCategory[] = [
     values: [
       "XS", "S", "M", "L", "XL",
       "XXXS", "XXS", "XXL", "XXXL",
-      "4XL", "5XL", "6XL", "7XL", "8XL", "9XL",
-      "23", "24", "25", "26", "27", "28", "30",
-      "42", "44", "46", "48", "50", "52", "54", "56", "58", "60", "62", "64",
-      "74", "90", "94", "98", "102", "106", "112", "118",
-      "Taille unique", "Autre",
+      "4XL", "5XL", "6XL", "7XL", "8XL", "9XL"
     ],
   },
   {
@@ -24,13 +16,7 @@ const sizeCategories: SizeCategory[] = [
     values: [
       "XS", "S", "M", "L", "XL",
       "XXXS", "XXS", "XXL", "XXXL",
-      "4XL", "5XL", "6XL", "7XL", "8XL", "9XL",
-      "25", "29",
-      "42", "44", "46", "48", "50", "52", "54", "56", "58", "60",
-      "70", "90", "94", "98", "106", "110", "112", "118",
-      "35 cm", "36 cm", "37 cm", "38 cm", "39 cm", "40 cm", "41 cm",
-      "42 cm", "43 cm", "44 cm", "45 cm", "46 cm", "47 cm", "48 cm",
-      "49 cm", "50 cm", "51 cm", "52 cm",
+      "4XL", "5XL", "6XL", "7XL", "8XL", "9XL"
     ],
   },
   {
@@ -71,7 +57,7 @@ const sizeCategories: SizeCategory[] = [
 ];
 
 function buildSizeMappingText(): string {
-  const lines = ["Available sizes by category type for the size_list filter:\n"];
+  const lines = ["Available sizes by category type for the size filter:\n"];
 
   for (const cat of sizeCategories) {
     lines.push(`${cat.key}: ${cat.values.join(", ")}`);
