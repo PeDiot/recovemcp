@@ -8,6 +8,7 @@ import { ItemsGrid } from "../components/ItemsGrid.js";
 interface ApiItem {
   id: string;
   url: string;
+  url_redirect?: string;
   image_location: string;
   title: string;
   brand?: string;
@@ -31,6 +32,7 @@ function mapApiItemToItem(apiItem: ApiItem): Item {
   return {
     id: apiItem.id,
     url: apiItem.url,
+    url_redirect: apiItem.url_redirect,
     image_location: apiItem.image_location,
     title: apiItem.title,
     brand: apiItem.brand,
@@ -54,8 +56,9 @@ function SearchRecove() {
   const isDark = theme === "dark";
 
   const handleClickOut = (item: Item) => {
-    if (item.url) {
-      openExternal(item.url, { redirectUrl: false });
+    const href = item.url_redirect ?? item.url;
+    if (href) {
+      openExternal(href, { redirectUrl: false });
     }
   };
 

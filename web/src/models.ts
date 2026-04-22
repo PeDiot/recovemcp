@@ -1,6 +1,7 @@
 export interface Item {
   id: string;
   url: string;
+  url_redirect?: string;
   image_location: string;
   title: string;
   brand?: string;

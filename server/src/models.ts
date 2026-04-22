@@ -21,6 +21,7 @@ export interface SearchResultItem {
   id: string;
   title: string;
   url: string;
+  url_redirect?: string | null;
   image_location: string;
   women: boolean;
   category_type: CategoryType;

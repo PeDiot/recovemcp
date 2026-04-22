@@ -150,6 +150,7 @@ const app = server.registerWidget(
         items: entry.items.map((item) => ({
           id: item.id,
           url: item.url,
+          url_redirect: item.url_redirect ?? undefined,
           image_location: item.image_location,
           title: item.title,
           brand: item.brand ?? undefined,

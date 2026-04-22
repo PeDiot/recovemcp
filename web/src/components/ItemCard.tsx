@@ -8,8 +8,10 @@ interface ItemCardProps {
 }
 
 export function ItemCard({ item, onClickOut, onItemPress }: ItemCardProps) {
+  const href = item.url_redirect ?? item.url;
+
   const handleItemPress = (e: React.MouseEvent) => {
-    if (!item.url) return;
+    if (!href) return;
 
     if (onItemPress?.(item)) {
       e.preventDefault();
@@ -32,7 +34,7 @@ export function ItemCard({ item, onClickOut, onItemPress }: ItemCardProps) {
   return (
     <div className="w-full mb-4">
       <a
-        href={item.url}
+        href={href}
         target="_blank"
         rel="noopener noreferrer"
         className="block w-full bg-white dark:bg-white/[0.08] rounded-2xl overflow-hidden hover:shadow-md active:shadow-md dark:hover:bg-white/[0.12] dark:active:bg-white/[0.12] transition-all duration-200 text-left no-underline"
