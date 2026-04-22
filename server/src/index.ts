@@ -93,7 +93,7 @@ const app = server.registerWidget(
         domain: "https://recovemcp-a7a2aaf8.alpic.live",
         csp: {
           resourceDomains: ["https://images1.vinted.net"],
-          redirectDomains: ["https://www.vinted.fr"],
+          redirectDomains: ["https://www.shoprecove.com"],
         },
       },
     },
