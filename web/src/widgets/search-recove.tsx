@@ -75,8 +75,11 @@ function SearchRecove() {
     );
   }
 
-  const meta = responseMetadata as { results?: MetaResult[] } | undefined;
+  const meta = responseMetadata as
+    | { results?: MetaResult[]; error?: string }
+    | undefined;
   const metaResults = meta?.results ?? [];
+  const errorMessage = meta?.error;
 
   const queryResponses: QueryResponse[] = metaResults.map((result) => ({
     description: result.description,
@@ -87,7 +90,11 @@ function SearchRecove() {
     return (
       <div className={isDark ? "dark" : ""}>
         <div className="p-6 text-center">
-          <p className="text-gray-500 dark:text-gray-400">No results found.</p>
+          <p className="text-gray-500 dark:text-gray-400">
+            {errorMessage
+              ? `Search failed: ${errorMessage}`
+              : "No results found."}
+          </p>
         </div>
       </div>
     );

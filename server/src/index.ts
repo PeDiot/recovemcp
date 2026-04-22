@@ -90,6 +90,7 @@ const app = server.registerWidget(
     description: "Recove",
     _meta: {
       ui: {
+        domain: "https://recovemcp-a7a2aaf8.alpic.live",
         csp: {
           resourceDomains: ["https://images1.vinted.net"],
           redirectDomains: ["https://www.vinted.fr"],
@@ -114,6 +115,10 @@ const app = server.registerWidget(
       readOnlyHint: true,
       openWorldHint: false,
       destructiveHint: false,
+    },
+    _meta: {
+      "openai/toolInvocation/invoking": "Searching Recove",
+      "openai/toolInvocation/invoked": "Found items on Recove",
     },
   },
   async ({ queries, filters }) => {
@@ -175,14 +180,20 @@ const app = server.registerWidget(
         _meta: { results },
       };
     } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
       return {
+        structuredContent: {
+          results: [],
+          error: errorMessage,
+        },
         content: [
           {
             type: "text" as const,
-            text: `Search failed: ${error instanceof Error ? error.message : String(error)}`,
+            text: `Search failed: ${errorMessage}`,
           },
         ],
-        isError: true,
+        _meta: { results: [], error: errorMessage },
       };
     }
   },
