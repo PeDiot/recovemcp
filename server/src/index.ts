@@ -53,7 +53,7 @@ server.registerResource(
   "resource:///styling-instructions",
   {
     description:
-      "Fashion Art Director persona, style cheat sheet, and search workflow rules",
+      "Fashion Art Director persona, style cheat sheet (Y2K, Parisian, Cottagecore, Quiet Luxury, etc.) with priority brands, and search workflow rules. READ THIS before calling search-recove whenever the user mentions a style, era, aesthetic, vibe, or requests an outfit/look.",
     mimeType: "text/plain",
   },
   () => ({
@@ -71,7 +71,7 @@ server.registerResource(
   "resource:///size-mapping",
   {
     description:
-      "Available sizes by category type for the size filter parameter",
+      "Valid size values per category type (outerwear, top, bottom, dress, footwear) for the filters.size parameter. READ THIS before calling search-recove whenever the user mentions a size (e.g. 'M', '38', 'taille 42'), so the filter entries use the exact accepted values (note: bottom sizes use the 'W28 | FR 38' format, footwear uses EU sizes).",
     mimeType: "text/plain",
   },
   () => ({
