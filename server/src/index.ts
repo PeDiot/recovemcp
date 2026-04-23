@@ -2,6 +2,7 @@ import "./env.js";
 import { McpServer } from "skybridge/server";
 import { z } from "zod";
 import { apiClient } from "./api-client.js";
+import { systemPrompt } from "./system-prompt.js";
 import { toolDescription } from "./tool-description.js";
 import { stylingInstructions } from "./styling-instructions.js";
 import { sizeMappingText, sizeCategorySchema } from "./size-mapping.js";
@@ -46,6 +47,22 @@ const filtersSchema = z.object({
 const server = new McpServer(
   { name: "recove", version: "0.0.1" },
   { capabilities: {} },
+);
+
+server.registerPrompt(
+  "recove-system",
+  {
+    description:
+      "Global Recove assistant behavior: concise responses, no web browsing for shopping discovery, and language/tone defaults.",
+  },
+  () => ({
+    messages: [
+      {
+        role: "user",
+        content: { type: "text", text: systemPrompt },
+      },
+    ],
+  }),
 );
 
 server.registerResource(
