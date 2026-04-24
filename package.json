@@ -11,6 +11,7 @@
     "deploy": "alpic deploy"
   },
   "dependencies": {
+    "@alpic-ai/insights": "^1.116.0",
     "@modelcontextprotocol/sdk": "^1.29.0",
     "@tailwindcss/vite": "^4.2.2",
     "react": "^19.2.4",

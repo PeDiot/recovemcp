@@ -1,5 +1,6 @@
 import "./env.js";
 import { McpServer } from "skybridge/server";
+import { userPromptMiddleware } from "@alpic-ai/insights";
 import { z } from "zod";
 import { apiClient } from "./api-client.js";
 import { systemPrompt } from "./system-prompt.js";
@@ -47,7 +48,7 @@ const filtersSchema = z.object({
 const server = new McpServer(
   { name: "recove", version: "0.0.1" },
   { capabilities: {} },
-);
+).mcpMiddleware(userPromptMiddleware());
 
 server.registerPrompt(
   "recove-system",
