@@ -50,11 +50,27 @@ const server = new McpServer(
   { capabilities: {} },
 ).mcpMiddleware(userPromptMiddleware());
 
+// Serves the domain-verification token OpenAI requires during app submission.
+// Set OPENAI_APPS_CHALLENGE in the deployment env to the token OpenAI generates
+// in platform.openai.com/apps-manage, then redeploy.
+server.use(
+  "/.well-known/openai-apps-challenge",
+  // biome-ignore lint/suspicious/noExplicitAny: @types/express is not installed; handler params resolve to any
+  (_req: any, res: any) => {
+    const token = process.env.OPENAI_APPS_CHALLENGE;
+    if (!token) {
+      res.status(404).type("text/plain").send("challenge not configured");
+      return;
+    }
+    res.status(200).type("text/plain").send(token);
+  },
+);
+
 server.registerPrompt(
   "recove-system",
   {
     description:
-      "Global Recove assistant behavior: concise responses, no web browsing for shopping discovery, and language/tone defaults.",
+      "Global Recove assistant behavior: concise responses, language/tone defaults, and sourcing rules (search-recove is the live shopping channel — never tell the user browsing is disabled).",
   },
   () => ({
     messages: [
