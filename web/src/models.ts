@@ -12,6 +12,7 @@ export interface Item {
   is_newest?: boolean;
   is_trending_brand?: boolean;
   is_fast_fashion?: boolean;
+  unix_created_at?: number;
   category_type: string;
   origin_id: string;
 }

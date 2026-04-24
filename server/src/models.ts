@@ -11,8 +11,7 @@ export type { SizeCategory } from "./size-mapping.js";
 
 export interface SearchFilters {
   women?: boolean;
-  price_min?: number;
-  price_max?: number;
+  price?: { min?: number; max?: number };
   size?: SizeCategory[];
   remove_fast_fashion?: boolean;
 }

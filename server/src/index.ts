@@ -160,11 +160,18 @@ const app = server.registerWidget(
       const textList = queries.map((q) => q.query);
       const categoryTypeList = queries.map((q) => q.category_type);
 
+      const price =
+        filters?.price_min !== undefined || filters?.price_max !== undefined
+          ? {
+              ...(filters.price_min !== undefined && { min: filters.price_min }),
+              ...(filters.price_max !== undefined && { max: filters.price_max }),
+            }
+          : undefined;
+
       const apiFilters = filters
         ? {
             women: filters.women,
-            price_min: filters.price_min,
-            price_max: filters.price_max,
+            price,
             size: filters.size,
             remove_fast_fashion: filters.remove_fast_fashion,
           }
@@ -195,6 +202,7 @@ const app = server.registerWidget(
           is_newest: item.is_newest ?? undefined,
           is_trending_brand: item.is_trending_brand ?? undefined,
           is_fast_fashion: item.is_fast_fashion ?? undefined,
+          unix_created_at: item.unix_created_at ?? undefined,
           category_type: item.category_type,
           origin_id: item.origin_id,
         })),

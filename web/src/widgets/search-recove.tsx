@@ -19,6 +19,7 @@ interface ApiItem {
   is_newest?: boolean;
   is_trending_brand?: boolean;
   is_fast_fashion?: boolean;
+  unix_created_at?: number;
   category_type: string;
   origin_id: string;
 }
@@ -43,6 +44,7 @@ function mapApiItemToItem(apiItem: ApiItem): Item {
     is_newest: apiItem.is_newest,
     is_trending_brand: apiItem.is_trending_brand,
     is_fast_fashion: apiItem.is_fast_fashion,
+    unix_created_at: apiItem.unix_created_at,
     category_type: apiItem.category_type,
     origin_id: apiItem.origin_id,
   };
