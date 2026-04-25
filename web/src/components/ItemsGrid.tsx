@@ -60,9 +60,9 @@ export function ItemsGrid({
 
   return (
     <div className="w-full border border-gray-200/80 dark:border-white/10 rounded-2xl p-3">
-      <div className="mb-4 px-1 flex items-start justify-between gap-3">
+      <div className="mb-4 px-1 flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
         <div className="min-w-0">
-          <h2 className="text-lg font-medium text-[#3B1228] dark:text-gray-100 leading-tight line-clamp-2">
+          <h2 className="mt-1 text-base md:text-lg font-medium text-[#3B1228] dark:text-gray-100 leading-tight break-words">
             {queryResponse.description.text}
           </h2>
           <div className="flex items-center gap-1 mt-2">
@@ -76,7 +76,7 @@ export function ItemsGrid({
         <div
           role="tablist"
           aria-label="Sort items"
-          className="flex items-center gap-1 bg-gray-100 dark:bg-white/[0.06] rounded-full p-1 shrink-0"
+          className="inline-flex w-fit max-w-full flex-wrap md:flex-nowrap items-center gap-1 bg-gray-100 dark:bg-white/[0.06] rounded-2xl p-1 shrink-0"
         >
           {SORT_OPTIONS.map((opt) => {
             const active = sortKey === opt.key;
